@@ -1,0 +1,40 @@
+/*BACKUP THE DATA*/
+
+/*1. Backup Table Structure:*/
+
+	SHOW CREATE TABLE users;
+
+
+/*2. Backup Table data:*/
+
+  SELECT CONCAT
+    (
+      'INSERT INTO users 
+          (
+              id, name, email, created_at
+          ) 
+          VALUES 
+            (
+                ', id, ', \'', name, '\', \'', email, '\', \'', created_at, '\'
+            );
+    ') 
+  AS backup_query
+      FROM users;
+
+
+/*Recovery:*/
+
+
+/*1. Verify the Table Structure:*/
+
+      DESCRIBE users;
+
+
+/*2. Check the Data:*/
+
+    SELECT * FROM users;
+
+
+/*3.Count the Rows:*/
+
+SELECT COUNT(*) AS total_rows FROM users;
